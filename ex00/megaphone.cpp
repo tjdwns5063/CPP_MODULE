@@ -6,7 +6,7 @@ void	convert_alphabet_upper_case(std::string &str)
 
 	len = str.length();
 	for (int idx = 0; idx < len; idx++)
-		str[idx] = toupper(str[idx]);
+		str[idx] = std::toupper(str[idx]);
 }
 
 void	print_arg(char **argv)
