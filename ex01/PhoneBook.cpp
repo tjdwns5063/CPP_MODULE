@@ -56,6 +56,13 @@ void    PhoneBook::show_recorded_name(void)
     }
 }
 
+void    PhoneBook::add_contact_info(std::string& info)
+{
+    getline(std::cin, info);
+    if (std::cin.fail())
+        std::exit(EXIT_FAILURE);
+}
+
 void    PhoneBook::find_and_show_phone_number(void)
 {
     int target_idx;
@@ -64,29 +71,38 @@ void    PhoneBook::find_and_show_phone_number(void)
     std::cin >> target_idx;
     try {
         if (std::cin.fail()) throw 0;
+        if (target_idx > this->curr_cnt)
+            std::cout << "current available contact : " << this->curr_cnt << '\n';
         for (int idx = 0; idx < this->curr_cnt; idx++)
         {
             if (idx == target_idx - 1)
                 std::cout << "phone_number : " << this->contacts[idx].get_phone_number() << '\n';
         }
     } catch (int except) {
-            std::cout << "ERROR : please, input index(int)" << '\n';
-            std::cin.clear();
-            std::cin.ignore(100, '\n');
-        }
+        if (std::cin.eof())
+            std::exit(EXIT_FAILURE);
+        std::cout << "ERROR : please, input index(int)" << '\n';
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     std::cout << "search is end" << '\n';
 }
 
 void    PhoneBook::search(void)
 {
-
-    formatted_print("index");
-    formatted_print("first_name");
-    formatted_print("last_name");
-    formatted_print("nickname");
-    std::cout << '\n';
-    show_recorded_name();
-    find_and_show_phone_number();
+    try {
+        if (this->curr_cnt == 0) throw 0;
+        formatted_print("index");
+        formatted_print("first_name");
+        formatted_print("last_name");
+        formatted_print("nickname");
+        std::cout << '\n';
+        show_recorded_name();
+        find_and_show_phone_number();
+    } catch (int except) {
+        std::cout << "current available contact : 0\n";
+        return ;
+    }
 }
 
 void    PhoneBook::add(void)
@@ -97,23 +113,25 @@ void    PhoneBook::add(void)
     std::string phone_number;
     std::string darkest_secret;
 
-    std::cin.ignore(100, '\n');
-    std::cout << "write first name" << '\n';
-    getline(std::cin, first_name);
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::cout << "write first name : " << '\n';
+    add_contact_info(first_name);
     this->contacts[curr_idx].set_first_name(first_name);
-    std::cout << "write last name" << '\n';
-    getline(std::cin, last_name);
+    std::cout << "write last name : " << '\n';
+    add_contact_info(last_name);
     this->contacts[curr_idx].set_last_name(last_name);
-    std::cout << "write nickname" << '\n';
-    getline(std::cin, nickname);
+    std::cout << "write nickname : " << '\n';
+    add_contact_info(nickname);
     this->contacts[curr_idx].set_nickname(nickname);
-    std::cout << "write phone number" << '\n';
-    getline(std::cin, phone_number);
+    std::cout << "write phone number : " << '\n';
+    add_contact_info(phone_number);
     this->contacts[curr_idx].set_phone_number(phone_number);
-    std::cout << "write darkest secret" << '\n';
-    getline(std::cin, darkest_secret);
+    std::cout << "write darkest secret : " << '\n';
+    add_contact_info(darkest_secret);
     this->contacts[curr_idx].set_darkest_secret(darkest_secret);
     std::cout << "add is done" << '\n';
+
     this->curr_idx++;
     if (curr_idx == 8)
         this->curr_idx = 0;

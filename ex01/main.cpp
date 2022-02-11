@@ -1,3 +1,4 @@
+#include <limits>
 #include "PhoneBook.hpp"
 
 int main(void)
@@ -7,17 +8,19 @@ int main(void)
 
     while (1)
     {
-        std::cin >> order;
-        if (order == "ADD")
-            temp.add();
-        else if (order == "SEARCH")
-            temp.search();
-        else if (order == "EXIT")
-            temp.exit();
-        else
-        {
-            std::cin.clear();
-            continue ;
+        std::cin >> std::ws >>  order;
+        try {
+            if (std::cin.fail()) throw 0;
+            if (order == "ADD" || order == "add")
+                temp.add();
+            else if (order == "SEARCH" || order == "search")
+                temp.search();
+            else if (order == "EXIT" || order == "exit")
+                temp.exit();
+            else
+                std::cout << "invalid order\n";
+        } catch (int except) {
+            std::exit(EXIT_FAILURE);
         }
     }
 }

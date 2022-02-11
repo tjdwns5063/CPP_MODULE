@@ -13,6 +13,7 @@ private:
     void        formatted_print(std::string output);
     void        show_recorded_name(void);
     void        find_and_show_phone_number(void);
+    void        add_contact_info(std::string& info);
 public:
     PhoneBook();
     ~PhoneBook();

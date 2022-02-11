@@ -2,7 +2,7 @@ NAME = MyLog
 CPP = c++
 CPPFLAGS = -std=c++98 -Wall -Wextra
 SRC = Account.cpp
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.cpp=.o)
 MAIN = test.cpp
 
 all: $(NAME)
