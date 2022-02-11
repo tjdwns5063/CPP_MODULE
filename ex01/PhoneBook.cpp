@@ -63,7 +63,7 @@ void    PhoneBook::add_contact_info(std::string& info)
         std::exit(EXIT_FAILURE);
 }
 
-void    PhoneBook::find_and_show_phone_number(void)
+void    PhoneBook::find_and_show_contact_info(void)
 {
     int target_idx;
 
@@ -76,7 +76,10 @@ void    PhoneBook::find_and_show_phone_number(void)
         for (int idx = 0; idx < this->curr_cnt; idx++)
         {
             if (idx == target_idx - 1)
+            {
                 std::cout << "phone_number : " << this->contacts[idx].get_phone_number() << '\n';
+                std::cout << "darkest_secret : " << this->contacts[idx].get_darkest_secret() << '\n';
+            }
         }
     } catch (int except) {
         if (std::cin.eof())
@@ -98,7 +101,7 @@ void    PhoneBook::search(void)
         formatted_print("nickname");
         std::cout << '\n';
         show_recorded_name();
-        find_and_show_phone_number();
+        find_and_show_contact_info();
     } catch (int except) {
         std::cout << "current available contact : 0\n";
         return ;
