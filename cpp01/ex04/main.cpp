@@ -1,53 +1,63 @@
 #include <iostream>
 #include <fstream>
 
-void	replaceLine(std::string& line, std::string s1, std::string s2) {
-	std::string::size_type	n;
-	std::string::size_type	size;
-	std::string				replaceLine;
-	int						idx;
-
-	n = line.find(s1.c_str());
-	size = s2.size();
-	if (n == std::string::npos) {
-		return ;
-	}
-	idx = 0;
-	while (idx < static_cast<int>(size)) {
-		line[n + idx] = s2[idx];
-		idx++;
+void	writeReplaceLine(std::ofstream& outStream, std::string line) {
+	if (outStream.is_open() == true) {
+		outStream.write(line.c_str(), line.size());
 	}
 }
 
-void	writeReplaceLine(std::ofstream& outStream, std::string line) {
-	if (outStream.is_open() == true) {
-		if (line == "") {
-			outStream.write("\n", 1);
-		} else {
-			outStream.write(line.c_str(), line.size());
-		}
-	} else {
-		return ;
+std::string	makeNewLine(std::string line, std::string s1, std::string s2) {
+	std::string::size_type	n;
+	std::string::size_type	size;
+	int						idx;
+	std::string				newString;
+
+	if (line == "" && (s1 == "\\n" || s1 == "\\0")) {
+		newString.append(s2);
+		return (newString);
 	}
+	n = line.find(s1.c_str());
+	size = s1.size();
+	idx = 0;
+	while (n != std::string::npos) {
+		while (idx < static_cast<int>(n)) {
+			newString.append(1, line[idx]);
+			idx++;
+		}
+		newString.append(s2);
+		n = line.find(s1.c_str(), n + size);
+		idx += size;
+	}
+	std::cout << "idx : " << idx << '\n';
+	while (idx < static_cast<int>(line.size())) {
+		newString.append(1, line[idx]);
+		idx++;
+	}
+	return (newString);
 }
 
 void	readAndWriteFile(std::string fileName, std::string s1, std::string s2) {
 	std::ifstream	readStream;
 	std::ofstream	outStream;
 	std::string		line;
+	std::string		newLine;
 
 	readStream.open(fileName);
 	outStream.open(fileName + ".replace");
 	if (readStream.is_open() == true) {
-		while (readStream) {
+		while (readStream && !readStream.eof()) {
 			getline(readStream, line);
-			replaceLine(line, s1, s2);
-			writeReplaceLine(outStream, line);
+			newLine = makeNewLine(line, s1, s2);
+			if (!readStream.eof())
+				newLine.append("\n");
+			writeReplaceLine(outStream, newLine);
 		}
 	}
 	readStream.close();
 	outStream.close();
 }
+
 
 int main(int argc, char *argv[]) {
 	try {
