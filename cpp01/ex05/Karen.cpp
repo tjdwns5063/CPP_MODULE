@@ -15,21 +15,22 @@ Karen::~Karen( void ) {
 
 }
 
-void	Karen::complain( std::string level ) {
-	int	idx;
-
-	for (int _idx = 0; _idx < 4; _idx++) {
-		if (this->m_pFuncName[_idx] == level) {
-			idx = _idx;
-			break ;
-		} else {
-			idx = -1;
+int	Karen::getState( std::string level ) {
+	for (int idx = 0; idx < 4; idx++) {
+		if (level == this->m_pFuncName[idx]) {
+			return (idx);
 		}
 	}
-	if (idx >= 0) {
-		(this->*m_pFunc[idx])();
+	return (-1);
+}
+
+void	Karen::complain( std::string level ) {
+	int	state = getState(level);
+	
+	if (state < 0) {
+		std::cout << "invalid input\n";
 	} else {
-		return ;
+		(this->*m_pFunc[state])();
 	}
 }
 

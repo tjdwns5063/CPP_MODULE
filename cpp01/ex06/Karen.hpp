@@ -14,8 +14,14 @@ private:
 	void(Karen::*m_pFunc[4])( void );
 	std::string	m_pFuncName[4];
 	int			filter;
+	enum		e_level {
+		DEBUG,
+		INFO,
+		WARNING,
+		ERROR,
+	};
 
-	std::string	convert_alphabet_to_large_case(std::string str);
+	void		convert_alphabet_to_lower_case(std::string& str);
 	int			calcLevel( std::string level );
 	void		debug( void );
 	void		info( void );

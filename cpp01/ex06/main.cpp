@@ -9,8 +9,4 @@ int	main(int argc, char **argv) {
 	} catch (int except) {
 		std::cout << "Filter is not apllied\n";
 	}
-	myKaren.complain("debug");
-	myKaren.complain("info");
-	myKaren.complain("warning");
-	myKaren.complain("error");
 }

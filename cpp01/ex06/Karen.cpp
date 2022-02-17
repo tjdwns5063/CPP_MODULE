@@ -16,20 +16,20 @@ Karen::~Karen( void ) {
 
 }
 
-std::string	Karen::convert_alphabet_to_large_case(std::string str) {
+void	Karen::convert_alphabet_to_lower_case(std::string& str) {
 	int			size;
-	std::string	ret;
 
 	size = str.size();
 	for (int idx = 0; idx < size; idx++) {
-		ret.append(1, std::toupper(str[idx]));
+		str[idx] = std::tolower(str[idx]);
 	}
-	return (ret);
 }
 
 int	Karen::calcLevel( std::string level ) {
+	convert_alphabet_to_lower_case(level);
+
 	for (int _idx = 0; _idx < 4; _idx++) {
-		if (this->m_pFuncName[_idx] == level || convert_alphabet_to_large_case(this->m_pFuncName[_idx]) == level) {
+		if (this->m_pFuncName[_idx].compare(level) == 0) {
 			return (_idx);
 		}
 	}
@@ -38,8 +38,20 @@ int	Karen::calcLevel( std::string level ) {
 
 void	Karen::setFilter( std::string level ) {
 	this->filter = calcLevel(level);
-	if (this->filter < 0) {
-		std::cout << "[ Probably complaining about insignificant problems ]\n";
+
+	switch (this->filter) {
+		case DEBUG:
+			complain(this->m_pFuncName[DEBUG]);
+		case INFO:
+			complain(this->m_pFuncName[INFO]);
+		case WARNING:
+			complain(this->m_pFuncName[WARNING]);
+		case ERROR:
+			complain(this->m_pFuncName[ERROR]);
+			break ;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]\n\n";
+			break ;
 	}
 }
 
@@ -54,6 +66,7 @@ void	Karen::complain( std::string level ) {
 		return ;
 	}
 	(this->*m_pFunc[_level])();
+	std::cout << '\n';
 }
 
 void	Karen::debug( void ) {

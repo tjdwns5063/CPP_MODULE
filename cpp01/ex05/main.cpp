@@ -7,4 +7,5 @@ int	main(void) {
 	myKaren.complain("info");
 	myKaren.complain("warning");
 	myKaren.complain("error");
+	myKaren.complain("asdffer");
 }
