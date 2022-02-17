@@ -19,5 +19,7 @@ void	Zombie::setName( std::string name ) {
 }
 
 Zombie::~Zombie( void ) {
-	std::cout << this->name << " is Dead...\n";
+	static int cnt;
+
+	std::cout << "[ " << cnt++ << " ] " << this->name << " is Dead...\n";
 }
