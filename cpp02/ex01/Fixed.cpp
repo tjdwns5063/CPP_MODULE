@@ -38,7 +38,7 @@ int Fixed::getRawBits( void ) const {
 
 void    Fixed::setRawBits( int const raw ) {
     std::cout << "setRawBits member function called\n";
-    rawBits = raw;
+    rawBits = raw << fractionalBits;
 }
 
 float   Fixed::toFloat( void ) const {
