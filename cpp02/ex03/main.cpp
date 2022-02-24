@@ -4,7 +4,7 @@ int main( void ) {
     Point   first(3, 4);
     Point   second(10, 9);
     Point   third(3, 10);
-    Point   eval(5, 3);
+    Point   eval(4, 9);
 
     std::cout << "first : (" << first.getX() << ", " << first.getY() << ")\n";
     std::cout << "second : (" << second.getX() << ", " << second.getY() << ")\n";

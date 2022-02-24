@@ -16,14 +16,6 @@ Point::Point( const Point& ref) {
     *this = ref;
 }
 
-const Fixed&  Point::getX( void ) {
-    return (x);
-}
-
-const Fixed&  Point::getY( void ) {
-    return (y);
-}
-
 const Fixed&  Point::getX( void ) const {
     return (x);
 }

@@ -13,8 +13,6 @@ public:
     Point( const Fixed& _x, const Fixed& _y );
     ~Point( void );
     Point( const Point& ref );
-    const Fixed&  getX( void );
-    const Fixed&  getY( void );
     const Fixed&  getX( void ) const;
     const Fixed&  getY( void ) const;
     Point&  operator=( const Point& ref );
