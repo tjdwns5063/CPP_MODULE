@@ -12,4 +12,7 @@ int main(void) {
     std::cout << b.getHitPoint() << '\n';
     b.guardGate();
     b.takeDamage(a.getAttackDamage());
+    std::cout << b.getHitPoint() << '\n';
+    b.takeDamage(a.getAttackDamage());
+    std::cout << b.getHitPoint() << '\n';
 }

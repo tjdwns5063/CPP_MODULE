@@ -41,12 +41,12 @@ void    ClapTrap::beRepaired( unsigned int amount ) {
     if (hitPoint <= 0) {
         return ;
     }
-    std::cout << className << " " << name << " repaired " << amount << " damage\n";
     if ((hitPoint + amount) >= static_cast<unsigned int>(maxHitPoint)) {
         hitPoint = maxHitPoint;
         return ;
     }
     hitPoint += amount;
+    std::cout << className << " " << name << " repaired " << amount << " damage\n";
 }
 
 int   ClapTrap::getHitPoint( void ) const {

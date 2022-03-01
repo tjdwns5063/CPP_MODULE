@@ -1,11 +1,13 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap( std::string name ) : ClapTrap( name ) {
+    const_cast<std::string&>(className) = "ScavTrap";
     const_cast<int&>(maxHitPoint) = 100;
     const_cast<int&>(maxEnergyPoint) = 50;
     const_cast<int&>(attackDamage) = 20;
     hitPoint = maxHitPoint;
     energyPoint = maxEnergyPoint;
+    guardMode = false;
     std::cout << "ScavTrap " << name << " is constructed\n";
 }
 
@@ -18,44 +20,33 @@ ScavTrap::ScavTrap( const ScavTrap& ref)  : ClapTrap( ref.name ) {
 }
 
 ScavTrap&   ScavTrap::operator=( const ScavTrap& ref ) {
-    name = ref.name;
+    const_cast<std::string&>(className) = "ScavTrap";
     const_cast<int&>(maxHitPoint) = ref.maxHitPoint;
     const_cast<int&>(maxEnergyPoint) = ref.maxEnergyPoint;
     const_cast<int&>(attackDamage) = ref.attackDamage;
+    name = ref.name;
     hitPoint = ref.hitPoint;
     energyPoint = ref.energyPoint;
+    guardMode = ref.guardMode;
     return (*this);
-}
-
-void    ScavTrap::attack( std::string const& target ) {
-    ClapTrap::attack(target);
 }
 
 void    ScavTrap::takeDamage( unsigned int amount ) {
     if (guardMode == true) {
         std::cout << "ScavTrap " << name << " is Guard Mode... then, damage " << amount << " is Guarded\n";
+        guardMode = false;
+        std::cout << "Guard Mode is Cleared...\n";
         return ;
     }
-    ClapTrap::takeDamage(amount);
-}
-
-void    ScavTrap::beRepaired( unsigned int amount ) {
-    ClapTrap::beRepaired(amount);
-}
-
-int     ScavTrap::getHitPoint( void ) const {
-    return (ClapTrap::getHitPoint());
-}
-
-int     ScavTrap::getEnergyPoint( void ) const {
-    return (ClapTrap::getEnergyPoint());
-}
-
-int     ScavTrap::getAttackDamage( void ) const {
-    return (ClapTrap::getAttackDamage());
+    std::cout << className << " " << name << " take " << amount << " damage\n";
+    if ((hitPoint - amount) <= 0) {
+        hitPoint = 0;
+        return ;
+    }
+    hitPoint -= amount;
 }
 
 void    ScavTrap::guardGate( void ) {
     guardMode = true;
-    std::cout << "ScavTrap " << name << " is Guard Mode\n";
+    std::cout << "ScavTrap " << name << " transform Guard Mode\n";
 }
