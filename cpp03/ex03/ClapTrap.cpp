@@ -8,6 +8,7 @@ ClapTrap::ClapTrap( std::string _name ) : className("ClapTrap"), maxHitPoint(10)
 }
 
 ClapTrap::~ClapTrap( void ) {
+    const_cast<std::string&>(className) = "ClapTrap";
     std::cout << className << " " << name << " destructed\n";
 }
 

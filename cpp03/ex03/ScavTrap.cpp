@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap( std::string name ) : ClapTrap( name ) {
+ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name ) {
     const_cast<std::string&>(className) = "ScavTrap";
     const_cast<int&>(maxHitPoint) = 100;
     const_cast<int&>(maxEnergyPoint) = 50;
@@ -12,6 +12,7 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap( name ) {
 }
 
 ScavTrap::~ScavTrap( void ) {
+    const_cast<std::string&>(className) = "ScavTrap";
     std::cout << className << " " << name << " is destructed\n";
 }
 

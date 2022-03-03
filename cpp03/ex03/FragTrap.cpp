@@ -10,6 +10,7 @@ FragTrap::FragTrap( std::string _name ) : ClapTrap( _name ) {
 	std::cout << className << " " << name << " constructed\n";
 }
 FragTrap::~FragTrap( void ) {
+	const_cast<std::string&>(className) = "FragTrap";
 	std::cout << className << " " << name << " destructed\n";
 }
 

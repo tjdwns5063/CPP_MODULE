@@ -1,17 +1,34 @@
 #include "FragTrap.hpp"
 
 int main(void) {
-    FragTrap A("A");
-    FragTrap B("B");
+    FragTrap a("a");
+    FragTrap b("b");
 
-
-    A.attack("B");
-    B.takeDamage(A.getAttackDamage());
-    std::cout << "current B's HitPoint is " << B.getHitPoint() << '\n';
-    B.attack("A");
-    A.takeDamage(B.getAttackDamage());
-    std::cout << "current A's HitPoint is " << A.getHitPoint() << '\n';
-    B.beRepaired(5);
-    std::cout << "current B's HitPoint is " << B.getHitPoint() << '\n';
-    A.highFivesGuys();
+    std::cout << '\n' << "-------------------------------\n";
+    std::cout << '\n' << a << '\n';
+    std::cout << "-------------------------------\n";
+    std::cout <<'\n' << b << '\n';
+    std::cout << "-------------------------------\n\n";
+    a.attack("b");
+    b.takeDamage(a.getAttackDamage());
+    std::cout << '\n' << "-------------------------------\n";
+    std::cout << '\n' << a << '\n';
+    std::cout << "-------------------------------\n";
+    std::cout <<'\n' << b << '\n';
+    std::cout << "-------------------------------\n\n";
+    b.attack("a");
+    a.takeDamage(b.getAttackDamage());
+    std::cout << '\n' << "-------------------------------\n";
+    std::cout << '\n' << a << '\n';
+    std::cout << "-------------------------------\n";
+    std::cout <<'\n' << b << '\n';
+    std::cout << "-------------------------------\n\n";
+    b.beRepaired(5);
+    std::cout << '\n' << "-------------------------------\n";
+    std::cout << '\n' << a << '\n';
+    std::cout << "-------------------------------\n";
+    std::cout <<'\n' << b << '\n';
+    std::cout << "-------------------------------\n\n";
+    a.highFivesGuys();
+    std::cout << "\n-------------------------------\n\n";
 }

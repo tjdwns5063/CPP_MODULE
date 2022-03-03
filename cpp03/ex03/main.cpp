@@ -1,8 +1,8 @@
-#include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void) {
-    ClapTrap a("a");
-    ClapTrap b("b");
+    DiamondTrap a("a");
+    DiamondTrap b("b");
 
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
@@ -16,6 +16,7 @@ int main(void) {
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
+    a.guardGate();
     b.attack("a");
     a.takeDamage(b.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
@@ -29,4 +30,8 @@ int main(void) {
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
+    a.highFivesGuys();
+    std::cout << "a's ClapName is ";
+    a.whoAmI();
+    std::cout << "\n-------------------------------\n\n";
 }

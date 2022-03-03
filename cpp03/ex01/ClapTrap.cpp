@@ -8,10 +8,10 @@ ClapTrap::ClapTrap( std::string _name ) : className("ClapTrap"), maxHitPoint(10)
 }
 
 ClapTrap::~ClapTrap( void ) {
-    std::cout << "ClapTrap " << name << " destructed\n";
+    std::cout << className << " " << name << " destructed\n";
 }
 
-ClapTrap::ClapTrap( const ClapTrap& ref ) : className("ClapTrap"), maxHitPoint(10), maxEnergyPoint(10), attackDamage(0) {
+ClapTrap::ClapTrap( const ClapTrap& ref ) : maxHitPoint(10), maxEnergyPoint(10), attackDamage(0) {
     *this = ref;
 }
 
@@ -41,12 +41,12 @@ void    ClapTrap::beRepaired( unsigned int amount ) {
     if (hitPoint <= 0) {
         return ;
     }
-    std::cout << className << " " << name << " repaired " << amount << " damage\n";
     if ((hitPoint + amount) >= static_cast<unsigned int>(maxHitPoint)) {
         hitPoint = maxHitPoint;
         return ;
     }
     hitPoint += amount;
+    std::cout << className << " " << name << " repaired " << amount << " damage\n";
 }
 
 int   ClapTrap::getHitPoint( void ) const {
@@ -63,4 +63,17 @@ int   ClapTrap::getAttackDamage( void ) const {
 
 std::string ClapTrap::getName( void ) const {
     return (name);
+}
+
+std::string ClapTrap::getClassName( void ) const {
+    return (className);
+}
+
+std::ostream&    operator<<(std::ostream& os, const ClapTrap& clapTrap) {
+    std::cout << "Class Name : " << clapTrap.getClassName() << '\n';
+    std::cout << "Name : " << clapTrap.getName() << '\n';
+    std::cout << "Hit Point : " << clapTrap.getHitPoint() << '\n';
+    std::cout << "Energy Point : " << clapTrap.getEnergyPoint() << '\n';
+    std::cout << "Attack Point : " << clapTrap.getAttackDamage() << '\n';
+    return (os);
 }
