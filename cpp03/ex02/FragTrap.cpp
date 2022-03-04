@@ -7,10 +7,10 @@ FragTrap::FragTrap( std::string _name ) : ClapTrap( _name ) {
 	const_cast<int&>(attackDamage) = 30;
 	hitPoint = maxHitPoint;
 	energyPoint = maxEnergyPoint;
-	std::cout << className << " " << name << " constructed\n";
+	std::cout << className << " " << name << " is constructed\n";
 }
 FragTrap::~FragTrap( void ) {
-	std::cout << className << " " << name << " destructed\n";
+	std::cout << "FragTrap " << name << " is destructed\n";
 }
 
 FragTrap::FragTrap( const FragTrap& ref ): ClapTrap(ref.name) {

@@ -5,6 +5,7 @@ ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name ) {
     const_cast<int&>(maxHitPoint) = 100;
     const_cast<int&>(maxEnergyPoint) = 50;
     const_cast<int&>(attackDamage) = 20;
+    name = _name;
     hitPoint = maxHitPoint;
     energyPoint = maxEnergyPoint;
     guardMode = false;
@@ -12,8 +13,7 @@ ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name ) {
 }
 
 ScavTrap::~ScavTrap( void ) {
-    const_cast<std::string&>(className) = "ScavTrap";
-    std::cout << className << " " << name << " is destructed\n";
+    std::cout << "ScavTrap " << name << " is destructed\n";
 }
 
 ScavTrap::ScavTrap( const ScavTrap& ref)  : ClapTrap( ref.name ) {
@@ -33,18 +33,20 @@ ScavTrap&   ScavTrap::operator=( const ScavTrap& ref ) {
 }
 
 void    ScavTrap::takeDamage( unsigned int amount ) {
+    int _amount = static_cast<int>(amount);
+
     if (guardMode == true) {
         std::cout << className << " " << name << " is Guard Mode... then, damage " << amount << " is Guarded\n";
         guardMode = false;
         std::cout << "Guard Mode is Cleared...\n";
         return ;
+    } else if (hitPoint <= _amount) {
+            _amount = (hitPoint - _amount) + _amount;
+            hitPoint = 0;
+    } else {
+        hitPoint -= _amount;
     }
-    std::cout << className << " " << name << " take " << amount << " damage\n";
-    if ((hitPoint - amount) <= 0) {
-        hitPoint = 0;
-        return ;
-    }
-    hitPoint -= amount;
+    std::cout << className << " " << name << " take " << _amount << " damage\n";
 }
 
 void    ScavTrap::guardGate( void ) {

@@ -4,13 +4,14 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap {
-protected:
-    bool    guardMode;
+private:
+    bool        guardMode;
+    std::string name;
     ScavTrap( void );
 
 public:
     ScavTrap( std::string name );
-    ~ScavTrap( void );
+    virtual ~ScavTrap( void );
     ScavTrap( const ScavTrap& ref );
     ScavTrap&   operator=( const ScavTrap& ref );
     void    takeDamage( unsigned int amount );

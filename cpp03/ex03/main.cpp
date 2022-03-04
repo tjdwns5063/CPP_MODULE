@@ -31,7 +31,6 @@ int main(void) {
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     a.highFivesGuys();
-    std::cout << "a's ClapName is ";
     a.whoAmI();
     std::cout << "\n-------------------------------\n\n";
 }

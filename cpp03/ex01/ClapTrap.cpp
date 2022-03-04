@@ -4,11 +4,11 @@ ClapTrap::ClapTrap( std::string _name ) : className("ClapTrap"), maxHitPoint(10)
     name = _name;
     hitPoint = maxHitPoint;
     energyPoint = maxEnergyPoint;
-    std::cout << className << " " << name << " constructed\n";
+    std::cout << className << " " << name << " is constructed\n";
 }
 
 ClapTrap::~ClapTrap( void ) {
-    std::cout << className << " " << name << " destructed\n";
+    std::cout << "ClapTrap " << name << " is destructed\n";
 }
 
 ClapTrap::ClapTrap( const ClapTrap& ref ) : maxHitPoint(10), maxEnergyPoint(10), attackDamage(0) {
@@ -31,21 +31,29 @@ void    ClapTrap::attack( std::string const& target ) {
 }
 
 void    ClapTrap::takeDamage( unsigned int amount ) {
-    if ((hitPoint - amount) < 0)
-        return ;
-    hitPoint -= amount;
-    std::cout << className << " " << name << " take " << amount << " damage\n";
+    int _amount = static_cast<int>(amount);
+
+    if (hitPoint <= _amount) {
+        _amount = (hitPoint - _amount) + _amount;
+        hitPoint = 0;
+    } else {
+        hitPoint -= _amount;
+    }
+    std::cout << className << " " << name << " take " << _amount << " damage\n";
 }
 
 void    ClapTrap::beRepaired( unsigned int amount ) {
+    int _amount = static_cast<int>(amount);
+
     if (hitPoint <= 0) {
+        std::cout << className << " " << name << " is Already Dead...\n";
         return ;
-    }
-    if ((hitPoint + amount) >= static_cast<unsigned int>(maxHitPoint)) {
+    } else if ((hitPoint + _amount) >= maxHitPoint) {
+        _amount = maxHitPoint - hitPoint;
         hitPoint = maxHitPoint;
-        return ;
+    } else {
+        hitPoint += _amount;
     }
-    hitPoint += amount;
     std::cout << className << " " << name << " repaired " << amount << " damage\n";
 }
 

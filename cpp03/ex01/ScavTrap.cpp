@@ -12,7 +12,7 @@ ScavTrap::ScavTrap( std::string name ) : ClapTrap( name ) {
 }
 
 ScavTrap::~ScavTrap( void ) {
-    std::cout << className << " " << name << " is destructed\n";
+    std::cout << "ScavTrap " << name << " is destructed\n";
 }
 
 ScavTrap::ScavTrap( const ScavTrap& ref)  : ClapTrap( ref.name ) {
@@ -32,18 +32,20 @@ ScavTrap&   ScavTrap::operator=( const ScavTrap& ref ) {
 }
 
 void    ScavTrap::takeDamage( unsigned int amount ) {
+    int _amount = static_cast<int>(amount);
+
     if (guardMode == true) {
         std::cout << className << " " << name << " is Guard Mode... then, damage " << amount << " is Guarded\n";
         guardMode = false;
         std::cout << "Guard Mode is Cleared...\n";
         return ;
+    } else if (hitPoint <= _amount) {
+            _amount = (hitPoint - _amount) + _amount;
+            hitPoint = 0;
+    } else {
+        hitPoint -= _amount;
     }
-    std::cout << className << " " << name << " take " << amount << " damage\n";
-    if ((hitPoint - amount) <= 0) {
-        hitPoint = 0;
-        return ;
-    }
-    hitPoint -= amount;
+    std::cout << className << " " << name << " take " << _amount << " damage\n";
 }
 
 void    ScavTrap::guardGate( void ) {

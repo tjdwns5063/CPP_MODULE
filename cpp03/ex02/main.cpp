@@ -1,15 +1,15 @@
 #include "FragTrap.hpp"
 
 int main(void) {
-    FragTrap a("a");
-    FragTrap b("b");
+    FragTrap a = FragTrap("a");
+    FragTrap b = FragTrap("b");
 
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
-    a.attack("b");
+    aattack("b");
     b.takeDamage(a.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';

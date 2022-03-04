@@ -10,14 +10,14 @@ int main(void) {
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     a.attack("b");
-    b.takeDamage(a.getAttackDamage());
+    b.takeDamage(b.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     b.attack("a");
-    a.takeDamage(b.getAttackDamage());
+    a.takeDamage(a.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
     std::cout << "-------------------------------\n";
