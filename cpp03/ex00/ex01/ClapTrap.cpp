@@ -8,7 +8,7 @@ ClapTrap::ClapTrap( std::string _name ) : className("ClapTrap"), maxHitPoint(10)
 }
 
 ClapTrap::~ClapTrap( void ) {
-    std::cout << className << " " << name << " is destructed\n";
+    std::cout << "ClapTrap " << name << " is destructed\n";
 }
 
 ClapTrap::ClapTrap( const ClapTrap& ref ) : maxHitPoint(10), maxEnergyPoint(10), attackDamage(0) {
@@ -54,7 +54,7 @@ void    ClapTrap::beRepaired( unsigned int amount ) {
     } else {
         hitPoint += _amount;
     }
-    std::cout << className << " " << name << " repaired " << amount << " damage\n";
+    std::cout << className << " " << name << " repaired " << _amount << " damage\n";
 }
 
 int   ClapTrap::getHitPoint( void ) const {

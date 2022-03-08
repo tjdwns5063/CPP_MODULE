@@ -1,8 +1,8 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void) {
-    ClapTrap a("a");
-    ClapTrap b("b");
+    FragTrap a = FragTrap("a");
+    FragTrap b = FragTrap("b");
 
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
@@ -10,14 +10,14 @@ int main(void) {
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     a.attack("b");
-    b.takeDamage(b.getAttackDamage());
+    b.takeDamage(a.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     b.attack("a");
-    a.takeDamage(a.getAttackDamage());
+    a.takeDamage(b.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
     std::cout << "-------------------------------\n";
@@ -29,4 +29,6 @@ int main(void) {
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
+    a.highFivesGuys();
+    std::cout << "\n-------------------------------\n\n";
 }

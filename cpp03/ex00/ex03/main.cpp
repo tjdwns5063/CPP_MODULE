@@ -1,8 +1,8 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void) {
-    FragTrap a = FragTrap("a");
-    FragTrap b = FragTrap("b");
+    DiamondTrap a("a");
+    DiamondTrap b("b");
 
     std::cout << '\n' << "-------------------------------\n";
     std::cout << '\n' << a << '\n';
@@ -16,6 +16,7 @@ int main(void) {
     std::cout << "-------------------------------\n";
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
+    a.guardGate();
     b.attack("a");
     a.takeDamage(b.getAttackDamage());
     std::cout << '\n' << "-------------------------------\n";
@@ -30,5 +31,6 @@ int main(void) {
     std::cout <<'\n' << b << '\n';
     std::cout << "-------------------------------\n\n";
     a.highFivesGuys();
+    a.whoAmI();
     std::cout << "\n-------------------------------\n\n";
 }

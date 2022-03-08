@@ -4,7 +4,7 @@
 #include <iostream>
 
 class ClapTrap {
-private:
+protected:
     const std::string   className;
     std::string         name;
     const int           maxHitPoint;
@@ -16,7 +16,7 @@ private:
 
 public:
     ClapTrap( std::string name );
-    ~ClapTrap( void );
+    virtual ~ClapTrap( void );
     ClapTrap( const ClapTrap& ref );
     ClapTrap&   operator=( const ClapTrap& ref );
     void        attack( std::string const& target );
