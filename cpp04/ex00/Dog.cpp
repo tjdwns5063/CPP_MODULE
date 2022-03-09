@@ -2,7 +2,7 @@
 
 Dog::Dog( void ) : Animal() {
     type = "Dog";
-    std::cout << "Dog is created\n";
+    std::cout << "Dog is constructed\n";
 }
 
 Dog::~Dog( void ) {
@@ -10,6 +10,7 @@ Dog::~Dog( void ) {
 }
 
 Dog::Dog( const Dog& ref ) {
+    std::cout << "Dog is copied\n";
     *this = ref;
 }
 
@@ -20,4 +21,8 @@ Dog& Dog::operator=( const Dog& ref ) {
 
 void    Dog::makeSound( void ) const {
     std::cout << "bowwow!! bowwow!!\n";
+}
+
+std::string Dog::getType( void ) const {
+    return (type);
 }

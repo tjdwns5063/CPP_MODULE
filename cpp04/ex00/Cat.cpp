@@ -2,7 +2,7 @@
 
 Cat::Cat( void ) : Animal() {
     type = "Cat";
-    std::cout << "Cat is created\n";
+    std::cout << "Cat is constructed\n";
 }
 
 Cat::~Cat( void ) {
@@ -10,6 +10,7 @@ Cat::~Cat( void ) {
 }
 
 Cat::Cat( const Cat& ref ) {
+    std::cout << "Cat is copied\n";
     *this = ref;
 }
 
@@ -20,4 +21,8 @@ Cat& Cat::operator=( const Cat& ref ) {
 
 void    Cat::makeSound( void ) const {
     std::cout << "meow!! meow!!\n";
+}
+
+std::string Cat::getType( void ) const {
+    return (type);
 }

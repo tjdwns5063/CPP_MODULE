@@ -12,8 +12,9 @@ public:
     virtual ~Animal( void );
     Animal( const Animal& ref );
     Animal& operator=( const Animal& ref );
-    virtual void    makeSound( void ) const;
-    virtual std::string getType( void ) const;
+    virtual void    makeSound( void ) const = 0;
+    virtual std::string getType( void ) const = 0;
+    virtual void        setType( std::string type ) = 0;
 };
 
 # endif
