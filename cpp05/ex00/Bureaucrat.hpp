@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class Bureaucrat: std::exception {
+class Bureaucrat {
 private:
     const std::string   name;
     int                 grade;
@@ -12,14 +12,23 @@ private:
 
 public:
     Bureaucrat( std::string _name, int _grade );
-    ~Bureaucrat( void ) throw();
+    ~Bureaucrat( void );
     Bureaucrat( const Bureaucrat& ref );
     Bureaucrat& operator=( const Bureaucrat& ref );
-    std::string getName( void );
-    int getGrade( void );
-    void gradeTooHighException(void);
-    void gradeTooLowException(void);
-    const char* what( void ) const throw();
+    std::string getName( void ) const;
+    int         getGrade( void ) const;
+    Bureaucrat  operator++( int );
+    Bureaucrat  operator--( int );
+    class gradeTooHighException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
+    class gradeTooLowException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
 };
+
+std::ostream&   operator<<( std::ostream& os, const Bureaucrat& ref );
 
 #endif
