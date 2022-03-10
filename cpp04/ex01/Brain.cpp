@@ -26,6 +26,7 @@ Brain&  Brain::operator=( const Brain& ref ) {
 }
 
 void    Brain::setIdeas( std::string idea ) {
+    this->idea = idea;
     for (int idx = 0; idx < 100; idx++) {
         ideas[idx] = idea;
     }

@@ -5,7 +5,6 @@
 
 class Character: public ICharacter {
 private:
-    int materiaCnt;
     const std::string name;
     AMateria*   materia[4];
     Character( void );

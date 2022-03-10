@@ -1,7 +1,7 @@
 NAME = Animal
 CPP = c++
 CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongDog.cpp WrongCat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

@@ -20,10 +20,15 @@ Cure&        Cure::operator=( const Cure& ref ) {
 AMateria*   Cure::clone() const {
     AMateria*   retPtr;
 
-    retPtr = new Cure();
+    try {
+        retPtr = new Cure();
+    } catch (std::bad_alloc err) {
+        std::cout << "Allocate Error!\n";
+        return (NULL);
+    }
     return (retPtr);
 }
 
 void        Cure::use( ICharacter& target ) {
-    std::cout << "* heals " << target.getName() << "’s wounds *\n";
+    std::cout << "* heals " << target.getName() << "'s wounds *\n";
 }

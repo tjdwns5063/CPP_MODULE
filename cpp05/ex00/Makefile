@@ -1,7 +1,7 @@
 NAME = a.out
 CPP = c++
 CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
-SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp ICharacter.cpp MateriaSource.cpp IMateriaSource.cpp
+SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

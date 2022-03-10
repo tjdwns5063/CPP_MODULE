@@ -13,6 +13,6 @@ IMateriaSource::IMateriaSource(const IMateriaSource& ref) {
 }
 
 IMateriaSource& IMateriaSource::operator=(const IMateriaSource& ref) {
-    *this = ref;
+    static_cast<void>(ref);
     return (*this);
 }

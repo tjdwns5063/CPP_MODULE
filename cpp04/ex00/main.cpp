@@ -20,6 +20,9 @@ int main(void) {
         delete (meta);
         delete (j);
         delete (i);
+
+        std::system("leaks Animal");
+        std::cout << "----------------------------------------\n";
     }
     {
         const WrongAnimal* meta = new WrongAnimal();
@@ -37,5 +40,7 @@ int main(void) {
         delete (meta);
         delete (j);
         delete (i);
+        std::system("leaks Animal");
+        std::cout << "----------------------------------------\n";
     }
 }

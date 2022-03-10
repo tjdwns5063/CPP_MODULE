@@ -20,7 +20,12 @@ Ice&        Ice::operator=( const Ice& ref ) {
 AMateria*   Ice::clone() const {
     AMateria*   retPtr;
 
-    retPtr = new Ice();
+    try {
+        retPtr = new Ice();
+    } catch (std::bad_alloc err) {
+        std::cout << "Allocate Error\n";
+        return (NULL);
+    }
     return (retPtr);
 }
 

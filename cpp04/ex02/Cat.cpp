@@ -43,7 +43,6 @@ Cat& Cat::operator=( const Cat& ref ) {
         delete (brain);
         brain = NULL;
     }
-    brain = new Brain(ref.brain->getIdea());
     try {
 		brain = new Brain(ref.brain->getIdea());
 	} catch (std::bad_alloc& err) {

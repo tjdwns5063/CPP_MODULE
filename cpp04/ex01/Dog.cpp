@@ -21,8 +21,8 @@ Dog::Dog( std::string idea ) : Animal() {
 }
 
 Dog::~Dog( void ) {
-    std::cout <<  "Dog is destructed\n";
     delete (brain);
+    std::cout <<  "Dog is destructed\n";
 }
 
 Dog::Dog( const Dog& ref ) {

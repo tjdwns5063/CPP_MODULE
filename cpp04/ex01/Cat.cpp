@@ -21,8 +21,8 @@ Cat::Cat( std::string idea ) : Animal() {
 }
 
 Cat::~Cat( void ) {
-    std::cout <<  "Cat is destructed\n";
     delete (brain);
+    std::cout <<  "Cat is destructed\n";
 }
 
 Cat::Cat( const Cat& ref ) {
@@ -43,7 +43,6 @@ Cat& Cat::operator=( const Cat& ref ) {
         delete (brain);
         brain = NULL;
     }
-    brain = new Brain(ref.brain->getIdea());
     try {
 		brain = new Brain(ref.brain->getIdea());
 	} catch (std::bad_alloc& err) {

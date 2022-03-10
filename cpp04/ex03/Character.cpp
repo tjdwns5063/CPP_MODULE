@@ -3,7 +3,6 @@
 #include "Ice.hpp"
 
 Character::Character( std::string name ): ICharacter(), name(name) {
-    materiaCnt = 0;
     for (int idx = 0; idx < 4; idx++) {
         materia[idx] = NULL;
     }
@@ -12,13 +11,12 @@ Character::Character( std::string name ): ICharacter(), name(name) {
 Character::~Character( void ) {
     for (int idx = 0; idx < 4; idx++) {
         if (materia[idx])
-            delete (materia[idx]);
+            unequip(idx);
     }
 }
 
 Character::Character( const Character& ref ) {
     const_cast<std::string&>(name) = ref.name;
-    materiaCnt = ref.materiaCnt;
     for (int idx = 0; idx < 4; idx++) {
         if (ref.materia[idx]->getType() == "ice") {
             try {
@@ -81,8 +79,7 @@ void Character::equip( AMateria* m ) {
     for (int idx = 0; idx < 4; idx++) {
         if (!materia[idx]) {
             materia[idx] = m;
-            materiaCnt++;
-            std::cout << "equip is success\n";
+            //std::cout << "equip is success\n";
             return ;
         }
     }

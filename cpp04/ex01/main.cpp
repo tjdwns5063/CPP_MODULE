@@ -45,37 +45,6 @@ int main(void) {
     }
     // {
     //     std::cout << "-----------------------------------\n";
-    //     Animal* array[10];
-
-    //     for (int idx = 0; idx < 10; idx++) {
-    //         if (idx < 5) {
-    //             try {
-    //                 array[idx] = new WrongDog("5");
-    //             } catch (std::bad_alloc& err) {
-    //                 std::cout << "Allocate Error!\n";
-    //                 return (NULL);
-    //             }
-    //         } else {
-    //             try {
-    //                 array[idx] = new WrongCat("10");
-    //             } catch (std::bad_alloc& err) {
-    //                 std::cout << "Allocate Error!\n";
-    //                 return (NULL);
-    //             }
-    //         }
-    //     }
-    //     for (int idx = 0; idx < 10; idx++) {
-    //         if (idx < 5) {
-    //             dynamic_cast<WrongDog*>(array[idx])->deleteBrain();
-    //         } else {
-    //             dynamic_cast<WrongCat*>(array[idx])->deleteBrain();
-    //         }
-    //         delete (array[idx]);
-    //     }
-    //     std::system("leaks Animal");
-    // }
-    // {
-    //     std::cout << "-----------------------------------\n";
     //     WrongDog c("4");
     //     WrongDog d;
 
@@ -87,6 +56,5 @@ int main(void) {
     //     c.setBrain("5");
     //     c.printBrain();
     //     d.printBrain();
-    //     std::system("leaks Animal");
     // }
 }
