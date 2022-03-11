@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+class Form;
+
 class Bureaucrat {
 private:
     const std::string   name;
@@ -21,11 +23,12 @@ public:
     Bureaucrat  operator--( int );
     Bureaucrat  operator++( void );
     Bureaucrat  operator--( void );
-    class gradeTooHighException: public std::exception {
+    void        signForm( Form& form );
+    class GradeTooHighException: public std::exception {
         public:
             const char* what( void ) const throw();
     };
-    class gradeTooLowException: public std::exception {
+    class GradeTooLowException: public std::exception {
         public:
             const char* what( void ) const throw();
     };
