@@ -31,6 +31,11 @@ public:
         public:
             const char* what( void ) const throw();
     };
+	class SignedException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
+	virtual void	execute( Bureaucrat const& executor ) const = 0;
 };
 
 # endif

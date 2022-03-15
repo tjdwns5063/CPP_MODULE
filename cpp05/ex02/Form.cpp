@@ -44,11 +44,15 @@ const char*	Form::GradeCompareException::what( void ) const throw() {
 	return ("bureacrat's grade is lower than form's grade");
 }
 
+const char* Form::SignedException::what( void ) const throw() {
+	return ("form is signed yet");
+}
+
 void	Form::beSigned( Bureaucrat& bureaucrat ) {
 	if (bureaucrat.getGrade() <= signedGrade)
 		sign = true;
 	else
-		throw Form::GradeCompareException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 std::string	Form::getName( void ) const {
