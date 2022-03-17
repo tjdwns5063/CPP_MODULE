@@ -7,7 +7,6 @@ class Bureaucrat {
 private:
     const std::string   name;
     int                 grade;
-    std::string message;
 
 public:
     Bureaucrat( void );
@@ -19,13 +18,13 @@ public:
     int         getGrade( void ) const;
     Bureaucrat  operator++( int );
     Bureaucrat  operator--( int );
-    Bureaucrat  operator++( void );
-    Bureaucrat  operator--( void );
-    class gradeTooHighException: public std::exception {
+    Bureaucrat&  operator++( void );
+    Bureaucrat&  operator--( void );
+    class GradeTooHighException: public std::exception {
         public:
             const char* what( void ) const throw();
     };
-    class gradeTooLowException: public std::exception {
+    class GradeTooLowException: public std::exception {
         public:
             const char* what( void ) const throw();
     };

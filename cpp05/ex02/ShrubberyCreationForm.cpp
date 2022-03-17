@@ -45,5 +45,7 @@ void	ShrubberyCreationForm::execute( Bureaucrat const& executor ) const {
     writer.open(target + "__shrubbery", std::ofstream::out | std::ofstream::trunc);
     if (writer.is_open()) {
         writer << tree;
+        writer.close();
     }
+    std::cout << "Shrubbery is created\n";
 }

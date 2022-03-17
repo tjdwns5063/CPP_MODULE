@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include <sstream>
 
 Intern::Intern( void ) {
     forms[SHRUBBERY] = new ShrubberyCreationForm("");
@@ -35,18 +36,26 @@ Intern& Intern::operator=( const Intern& ref ) {
 }
 
 void    Intern::convertFormName( std::string& formName ) {
-    int cutIdx;
+    std::stringstream ss(formName);
+    std::string realFormName;
+    std::string order;
 
-    cutIdx = formName.find(' ');
-    if (static_cast<unsigned long>(cutIdx) == std::string::npos)
-        throw Intern::unknownNameException();
-    formName = formName.substr(0, cutIdx);
-    formName[0] = std::toupper(formName[0]);
+    ss >> realFormName;
+    ss >> order;
+    if (order != "request") 
+        throw Intern::UnknownRequestException();
+    realFormName[0] = std::toupper(realFormName[0]);
+    formName = realFormName;
 }
 
-const char* Intern::unknownNameException::what( void ) const throw() {
+const char* Intern::UnknownNameException::what( void ) const throw() {
     return ("this form name is unknown");
 }
+
+const char* Intern::UnknownRequestException::what( void ) const throw() {
+    return ("this request is unknown");
+}
+
 
 Form*  Intern::makeForm(std::string formName, std::string target) {
     convertFormName(formName);
@@ -70,5 +79,5 @@ Form*  Intern::makeForm(std::string formName, std::string target) {
                 }
         }
     }
-    throw Intern::unknownNameException();
+    throw Intern::UnknownNameException();
 }

@@ -6,21 +6,34 @@
 #include <iostream>
 
 int main(void) {
-    Bureaucrat bureaucrat("mkang", 1);
+    Bureaucrat bureaucrat;
     Intern  intern;
-    
+    Form*   form;
 
     try {
-        Form* form = intern.makeForm("shrubbery request", "jwoo");
+        bureaucrat = Bureaucrat("seongjki", 45);
+    } catch (std::exception& err) {
+        std::cout << err.what() << '\n';
+    }
+
+    try {
+        form = intern.makeForm("shrubbery request", "jwoo");
         bureaucrat.signForm(*form);
         form->execute(bureaucrat);
-        
+    } catch (std::exception& err) {
+        std::cout << err.what() << '\n';
+    }
 
+    try {
         form = intern.makeForm("robotomy request", "tkim");
         bureaucrat.signForm(*form);
         form->execute(bureaucrat);
+    } catch (std::exception& err) {
+        std::cout << err.what() << '\n';
+    }
 
-        form = intern.makeForm("presidential request", "seongjki");
+    try {
+        form = intern.makeForm("presidential request", "mkang");
         bureaucrat.signForm(*form);
         form->execute(bureaucrat);
     } catch (std::exception& err) {

@@ -4,10 +4,9 @@
 void    Bureaucrat::signForm( Form& form ) {
     try {
         form.beSigned(*this);
-        std::cout << "<" << name << "> signs " << "<" << form.getName() << ">\n";
+        std::cout << name << " signs " << form.getName() << '\n';
     } catch (std::exception& err) {
-        std::cout << "<" << name << "> cannot sign " << "<" << form.getName() << "> because "\
-         << "<" << err.what() << ">\n";
+        std::cout << name << " cannot sign " << form.getName() << " because " << err.what() << '\n';
     }
 }
 

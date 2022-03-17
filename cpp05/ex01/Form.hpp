@@ -31,6 +31,14 @@ public:
         public:
             const char* what( void ) const throw();
     };
+	class GradeTooHighException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
+    class GradeTooLowException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
 };
 
 # endif

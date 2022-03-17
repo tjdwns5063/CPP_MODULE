@@ -21,7 +21,11 @@ public:
     Intern( const Intern& ref );
     Intern& operator=( const Intern& ref );
     Form*  makeForm(std::string formName, std::string target);
-    class unknownNameException: public std::exception {
+    class UnknownNameException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
+    class UnknownRequestException: public std::exception {
         public:
             const char* what( void ) const throw();
     };

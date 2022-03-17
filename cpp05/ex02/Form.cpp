@@ -4,9 +4,9 @@
 Form::Form( std::string _name, int _execGrade, int _signedGrade ):\
 	name(_name), execGrade(_execGrade), signedGrade(_signedGrade) {
 		if (execGrade > 150 || signedGrade > 150)
-			throw Bureaucrat::GradeTooLowException();
+			throw Form::GradeTooLowException();
 		else if (execGrade < 1 || signedGrade < 1)
-			throw Bureaucrat::GradeTooHighException();
+			throw Form::GradeTooHighException();
 		else {
 			sign = false;
 		}
@@ -15,18 +15,18 @@ Form::Form( std::string _name, int _execGrade, int _signedGrade ):\
 Form::Form( const Form& ref ):\
 	name(ref.name), execGrade(ref.execGrade), signedGrade(ref.signedGrade) {
 		if (execGrade > 150 || signedGrade > 150)
-			throw Bureaucrat::GradeTooLowException();
+			throw Form::GradeTooLowException();
 		else if (execGrade < 1 || signedGrade < 1)
-			throw Bureaucrat::GradeTooHighException();
+			throw Form::GradeTooHighException();
 		else 
 		 	sign = ref.sign;
 	}
 
 Form&	Form::operator=( const Form& ref ) {
 	if (execGrade > 150 || signedGrade > 150)
-		throw Bureaucrat::GradeTooLowException();
+		throw Form::GradeTooLowException();
 	else if (execGrade < 1 || signedGrade < 1)
-		throw Bureaucrat::GradeTooHighException();
+		throw Form::GradeTooHighException();
 	else {
 		const_cast<std::string&>(name) = ref.name;
 		const_cast<int&>(execGrade) = ref.execGrade;
@@ -38,6 +38,14 @@ Form&	Form::operator=( const Form& ref ) {
 
 Form::~Form( void ) {
 
+}
+
+const char* Form::GradeTooHighException::what( void ) const throw() {
+    return ("grade is too high");
+}
+
+const char* Form::GradeTooLowException::what( void ) const throw() {
+    return ("grade is too low");
 }
 
 const char*	Form::GradeCompareException::what( void ) const throw() {
@@ -52,7 +60,7 @@ void	Form::beSigned( Bureaucrat& bureaucrat ) {
 	if (bureaucrat.getGrade() <= signedGrade)
 		sign = true;
 	else
-		throw Bureaucrat::GradeTooLowException();
+		throw Form::GradeCompareException();
 }
 
 std::string	Form::getName( void ) const {

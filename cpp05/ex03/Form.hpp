@@ -27,6 +27,14 @@ public:
 	bool	getSign( void ) const;
 	void	setSign( bool _sign );
 	void	beSigned( Bureaucrat& bureaucrat );
+	class GradeTooHighException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
+    class GradeTooLowException: public std::exception {
+        public:
+            const char* what( void ) const throw();
+    };
     class GradeCompareException: public std::exception {
         public:
             const char* what( void ) const throw();
