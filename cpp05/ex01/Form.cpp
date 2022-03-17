@@ -90,3 +90,11 @@ bool	Form::getSign( void ) const {
 void	Form::setSign( bool _sign ) {
 	sign = _sign;
 }
+
+std::ostream&	operator<<( std::ostream& os, const Form& form ) {
+	std::cout << "Name: " << form.getName() << '\n';
+	std::cout << "SignedGrade: " << form.getSignedGrade() << '\n';
+	std::cout << "ExecGrade: " << form.getExecGrade() << '\n';
+	std::cout << "Sign: " << form.getSign();
+	return (os); 
+}

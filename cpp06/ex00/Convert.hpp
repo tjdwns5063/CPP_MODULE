@@ -9,7 +9,7 @@ private:
 	double		value;
 
 	Convert( void );
-	std::string	extractNumeric( std::string& _str );
+	void	eraseF( std::string& _str );
 
 public:
 	Convert( std::string _str );

@@ -5,13 +5,13 @@
 #include <iostream>
 
 int main(void) {
-    ShrubberyCreationForm sForm("mkang");
-    RobotomyRequestForm rForm("tkim");
-    PresidentialPardonForm pForm("jwoo");
+    ShrubberyCreationForm sForm("mkang"); //sign : 145, exec : 137
+    RobotomyRequestForm rForm("tkim"); // sign : 72, exec : 45
+    PresidentialPardonForm pForm("jwoo"); // sign : 25, exec : 5
     Bureaucrat me;
 
     try {
-       me = Bureaucrat("seongjki", 42);
+       me = Bureaucrat("seongjki", 1);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }

@@ -9,10 +9,9 @@ class Bureaucrat {
 private:
     const std::string   name;
     int                 grade;
-    std::string message;
+	Bureaucrat( void );
 
 public:
-    Bureaucrat( void );
     Bureaucrat( std::string _name, int _grade );
     ~Bureaucrat( void );
     Bureaucrat( const Bureaucrat& ref );

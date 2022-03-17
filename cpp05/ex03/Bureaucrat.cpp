@@ -19,7 +19,7 @@ const char* Bureaucrat::GradeTooLowException::what( void ) const throw() {
 }
 
 Bureaucrat::Bureaucrat( void ): name("") {
-    grade = 0;
+    grade = 150;
 }
 
 Bureaucrat::Bureaucrat( std::string _name, int _grade ): name(_name) {

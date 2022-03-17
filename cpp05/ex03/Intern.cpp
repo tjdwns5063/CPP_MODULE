@@ -44,7 +44,6 @@ void    Intern::convertFormName( std::string& formName ) {
     ss >> order;
     if (order != "request") 
         throw Intern::UnknownRequestException();
-    realFormName[0] = std::toupper(realFormName[0]);
     formName = realFormName;
 }
 

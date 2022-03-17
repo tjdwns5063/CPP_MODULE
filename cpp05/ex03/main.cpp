@@ -11,7 +11,7 @@ int main(void) {
     Form*   form;
 
     try {
-        bureaucrat = Bureaucrat("seongjki", 45);
+        bureaucrat = Bureaucrat("seongjki", 1);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }

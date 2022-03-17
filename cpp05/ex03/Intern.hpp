@@ -9,9 +9,9 @@ class Intern {
 private:
     Form* forms[3];
     enum formsEnum {
-        SHRUBBERY,
-        ROBOTOMY,
-        PRESIDENTIAL,
+        SHRUBBERY, 
+        ROBOTOMY, 
+        PRESIDENTIAL, 
     };
     void    convertFormName( std::string& formName );
 

@@ -1,9 +1,11 @@
 #include "Convert.hpp"
 #include <sstream>
 #include <cmath>
+#include <iomanip>
 
 Convert::Convert( std::string _str ) {
-	str = extractNumeric(_str);
+	eraseF(_str);
+	str = _str;
 	value = toDouble();
 }
 
@@ -24,12 +26,15 @@ const char*	Convert::NotDecimalExpressionException::what( void ) const throw() {
 	return ("this argument is not decimal expression");
 }
 
-std::string Convert::extractNumeric( std::string& _str ) {
-	int	length = _str.size();
+void Convert::eraseF( std::string& str ) {
+	int	length = str.size();
 
-	if (str[length - 1] == 'f')
-		_str.erase(length - 1);
-	return (_str);
+	if (str.find("nan") != std::string::npos || str.find("inf") != std::string::npos)
+		return ;
+	if (str[length - 1] == 'f') {
+		str.erase(length - 1);
+	} else if (str[length - 1] != 'f' && (!std::isdigit(str[length - 1])))
+		throw NotDecimalExpressionException();
 }
 
 double Convert::toDouble( void ) const {
@@ -66,7 +71,7 @@ void	Convert::print( char charValue ) const {
 	else if (!std::isprint(charValue))
 		std::cout << "Non displayable\n";
 	else
-		std::cout << charValue << '\n';
+		std::cout << "'" << charValue << "'" << '\n';
 }
 
 void	Convert::print( int intValue ) const {
@@ -77,11 +82,19 @@ void	Convert::print( int intValue ) const {
 }
 
 void	Convert::print( float floatValue ) const {
-	std::cout << floatValue << '\n';
+	if (std::isinf(value))
+		std::cout.setf(std::ios::showpos);
+	std::cout.setf(std::ios::fixed);
+	std::cout << std::setprecision(1) << floatValue << 'f' << '\n';
+	std::cout.unsetf(std::ios::showpos);
 }
 
 void	Convert::print( double doubleValue ) const {
-	std::cout << doubleValue << '\n';
+	if (std::isinf(value))
+		std::cout.setf(std::ios::showpos);
+	std::cout.setf(std::ios::fixed);
+	std::cout << std::setprecision(1) << doubleValue << '\n';
+	std::cout.unsetf(std::ios::showpos);
 }
 
 std::ostream&	operator<<( std::ostream& os, const Convert& convert ) {

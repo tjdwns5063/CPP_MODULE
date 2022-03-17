@@ -11,9 +11,9 @@ private:
 	const int execGrade;
 	const int signedGrade;
 	bool sign;
+	Form( void );
 
 public:
-	Form( void );
 	virtual ~Form( void );
 	Form( const Form& ref );
 	Form&	operator=( const Form& ref );
