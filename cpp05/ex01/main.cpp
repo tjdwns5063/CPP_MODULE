@@ -43,7 +43,7 @@ int main(void) {
         std::cout << '\n' << "-------------test4--------------\n\n";
         try {
             Bureaucrat me("me", 6);
-            Form    form("tempForm", 5, 5);
+            Form    form("tempForm", 5, 0);
 
             me.signForm(form);
             std::cout << form << '\n';

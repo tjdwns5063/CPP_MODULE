@@ -6,9 +6,9 @@
 #include <sstream>
 
 Intern::Intern( void ) {
-    forms[SHRUBBERY] = new ShrubberyCreationForm("");
-    forms[ROBOTOMY] = new RobotomyRequestForm("");
-    forms[PRESIDENTIAL] = new PresidentialPardonForm("");
+    forms[SHRUBBERY] = new std::string("shrubbery creation");
+    forms[ROBOTOMY] = new std::string("robotomy request");
+    forms[PRESIDENTIAL] = new std::string("presidential pardon");
 }
 
 Intern::~Intern( void ) {
@@ -18,9 +18,9 @@ Intern::~Intern( void ) {
 }
 
 Intern::Intern( const Intern& ref ) {
-    forms[SHRUBBERY] = new ShrubberyCreationForm(ref.forms[SHRUBBERY]->getName());
-    forms[ROBOTOMY] = new RobotomyRequestForm(ref.forms[ROBOTOMY]->getName());
-    forms[PRESIDENTIAL] = new PresidentialPardonForm(ref.forms[PRESIDENTIAL]->getName());
+    forms[SHRUBBERY] = new std::string(*ref.forms[SHRUBBERY]);
+    forms[ROBOTOMY] = new std::string(*ref.forms[ROBOTOMY]);
+    forms[PRESIDENTIAL] = new std::string(*ref.forms[PRESIDENTIAL]);
 }
 
 Intern& Intern::operator=( const Intern& ref ) {
@@ -29,23 +29,10 @@ Intern& Intern::operator=( const Intern& ref ) {
     for (int idx = 0; idx < 3; idx++) {
         delete (forms[idx]);
     }
-    forms[SHRUBBERY] = new ShrubberyCreationForm(ref.forms[SHRUBBERY]->getName());
-    forms[ROBOTOMY] = new RobotomyRequestForm(ref.forms[ROBOTOMY]->getName());
-    forms[PRESIDENTIAL] = new PresidentialPardonForm(ref.forms[PRESIDENTIAL]->getName());
+    forms[SHRUBBERY] = new std::string(*ref.forms[SHRUBBERY]);
+    forms[ROBOTOMY] = new std::string(*ref.forms[ROBOTOMY]);
+    forms[PRESIDENTIAL] = new std::string(*ref.forms[PRESIDENTIAL]);
     return (*this);
-}
-
-void    Intern::convertFormName( std::string& formName ) {
-    std::stringstream ss(formName);
-    std::string realFormName;
-    std::string order;
-
-    ss >> realFormName;
-    ss >> order;
-    realFormName[0] = std::toupper(realFormName[0]);
-    order[0] = std::toupper(order[0]);
-    realFormName += order;
-    formName = realFormName;
 }
 
 const char* Intern::UnknownNameException::what( void ) const throw() {
@@ -53,24 +40,19 @@ const char* Intern::UnknownNameException::what( void ) const throw() {
 }
 
 Form*  Intern::makeForm(std::string formName, std::string target) {
-    convertFormName(formName);
-
     for (int idx = 0; idx < 3; idx++) {
         switch (idx) {
             case SHRUBBERY:
-                if (forms[SHRUBBERY]->getName().find(formName) == 0) {
-                    dynamic_cast<ShrubberyCreationForm*>(forms[SHRUBBERY])->setTarget(target);
-                    return (forms[SHRUBBERY]);
+                if (*forms[SHRUBBERY] == formName) {
+                    return (new ShrubberyCreationForm(target));
                 }
             case ROBOTOMY:
-                if (forms[ROBOTOMY]->getName().find(formName) == 0) {
-                    dynamic_cast<RobotomyRequestForm*>(forms[ROBOTOMY])->setTarget(target);
-                    return (forms[ROBOTOMY]);
+                if (*forms[ROBOTOMY] == formName) {
+                    return (new RobotomyRequestForm(target));
                 }
             case PRESIDENTIAL:
-                if (forms[PRESIDENTIAL]->getName().find(formName) == 0) {
-                    dynamic_cast<PresidentialPardonForm*>(forms[PRESIDENTIAL])->setTarget(target);
-                    return (forms[PRESIDENTIAL]);
+                if (*forms[PRESIDENTIAL] == formName) {
+                    return (new PresidentialPardonForm(target));
                 }
         }
     }
