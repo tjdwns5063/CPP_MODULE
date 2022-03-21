@@ -18,21 +18,21 @@ int main(void) {
 
     try {
         me.signForm(sForm);
-        sForm.execute(me);
+        me.executeForm(sForm);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }
 
     try {
         me.signForm(rForm);
-        rForm.execute(me);
+        me.executeForm(rForm);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }
 
     try {
         me.signForm(pForm);
-        pForm.execute(me);
+        me.executeForm(pForm);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }

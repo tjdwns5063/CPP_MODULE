@@ -11,15 +11,15 @@ int main(void) {
     Form*   form;
 
     try {
-        bureaucrat = Bureaucrat("seongjki", 1);
+        bureaucrat = Bureaucrat("seongjki", 70);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }
 
     try {
-        form = intern.makeForm("shrubbery request", "jwoo");
+        form = intern.makeForm("shrubbery creation", "jwoo");
         bureaucrat.signForm(*form);
-        form->execute(bureaucrat);
+        bureaucrat.executeForm(*form);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }
@@ -27,15 +27,15 @@ int main(void) {
     try {
         form = intern.makeForm("robotomy request", "tkim");
         bureaucrat.signForm(*form);
-        form->execute(bureaucrat);
+        bureaucrat.executeForm(*form);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }
 
     try {
-        form = intern.makeForm("presidential request", "mkang");
+        form = intern.makeForm("presidential pardon", "mkang");
         bureaucrat.signForm(*form);
-        form->execute(bureaucrat);
+        bureaucrat.executeForm(*form);
     } catch (std::exception& err) {
         std::cout << err.what() << '\n';
     }

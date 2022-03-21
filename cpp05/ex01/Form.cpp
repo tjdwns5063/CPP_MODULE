@@ -91,10 +91,12 @@ void	Form::setSign( bool _sign ) {
 	sign = _sign;
 }
 
-std::ostream&	operator<<( std::ostream& os, const Form& form ) {
-	std::cout << "Name: " << form.getName() << '\n';
-	std::cout << "SignedGrade: " << form.getSignedGrade() << '\n';
-	std::cout << "ExecGrade: " << form.getExecGrade() << '\n';
-	std::cout << "Sign: " << form.getSign();
-	return (os); 
+std::ostream&   operator<<( std::ostream& os, const Form& ref ) {
+    std::cout << ref.getName() << ", form's exec grade " << ref.getExecGrade() << ", form's signed grade " << ref.getSignedGrade();
+	if (ref.getSign()) {
+		std::cout << ", form is signed";
+	} else {
+		std::cout << ", form is signed yet";
+	}
+    return (os);
 }

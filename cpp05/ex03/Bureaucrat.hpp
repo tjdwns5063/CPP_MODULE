@@ -9,7 +9,6 @@ class Bureaucrat {
 private:
     const std::string   name;
     int                 grade;
-    std::string message;
 
 public:
     Bureaucrat( void );
@@ -32,6 +31,7 @@ public:
         public:
             const char* what( void ) const throw();
     };
+    void    executeForm( Form const& form );
 };
 
 std::ostream&   operator<<( std::ostream& os, const Bureaucrat& ref );

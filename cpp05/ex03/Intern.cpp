@@ -42,20 +42,15 @@ void    Intern::convertFormName( std::string& formName ) {
 
     ss >> realFormName;
     ss >> order;
-    if (order != "request") 
-        throw Intern::UnknownRequestException();
     realFormName[0] = std::toupper(realFormName[0]);
+    order[0] = std::toupper(order[0]);
+    realFormName += order;
     formName = realFormName;
 }
 
 const char* Intern::UnknownNameException::what( void ) const throw() {
     return ("this form name is unknown");
 }
-
-const char* Intern::UnknownRequestException::what( void ) const throw() {
-    return ("this request is unknown");
-}
-
 
 Form*  Intern::makeForm(std::string formName, std::string target) {
     convertFormName(formName);
