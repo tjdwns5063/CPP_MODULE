@@ -4,6 +4,6 @@
 class Base {
 public:
     virtual ~Base( void );
-}
+};
 
 # endif
