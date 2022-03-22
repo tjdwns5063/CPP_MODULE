@@ -13,7 +13,7 @@ Base* generate(void) {
         return (new A());
     } else if (random % 3 == 1) {
         return (new B());
-    } else {
+    } else if (random % 3 == 2) {
         return (new C());
     }
     return (NULL);
@@ -21,35 +21,42 @@ Base* generate(void) {
 
 void identify(Base* p) {
     if (dynamic_cast<A*>(p) != NULL) {
-        std::cout << "A" << '\n';
+        std::cout << "Ptr : A\n";
+        return ;
     } else if (dynamic_cast<B*>(p) != NULL) {
-        std::cout << "B" << '\n';
+        std::cout << "Ptr : B\n";
+        return ;
     } else if (dynamic_cast<C*>(p) != NULL) {
-        std::cout << "C" << '\n';
+        std::cout << "Ptr : C\n";
+        return ;
     } else {
-        std::cout << "Unknown" << '\n';
+        std::cout << "Unknown\n";
     }
 }
 
 void identify(Base& p) {
     try {
         p = dynamic_cast<A&>(p);
-        std::cout << "A" << '\n';
+        std::cout << "Ref : A\n";
+        return ;
     } catch (std::exception& err) {
         //std::cout << "this is not A" << '\n';
     }
     try {
         p = dynamic_cast<B&>(p);
-        std::cout << "B" << '\n';
+        std::cout << "Ref : B\n";
+        return ;
     } catch (std::exception& err) {
         //std::cout << "this is not B" << '\n';
     }
     try {
         p = dynamic_cast<C&>(p);
-        std::cout << "C" << '\n';
+        std::cout << "Ref : C\n";
+        return ;
     } catch (std::exception& err) {
         //std::cout << "this is not C" << '\n';
     }
+    std::cout << "Unknown\n";
 }
 
 int main(void) {

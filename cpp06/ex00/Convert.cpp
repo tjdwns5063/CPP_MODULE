@@ -29,7 +29,7 @@ const char*	Convert::NotDecimalExpressionException::what( void ) const throw() {
 void Convert::eraseF( std::string& str ) {
 	int	length = str.size();
 
-	if (str.find("nan") != std::string::npos || str.find("inf") != std::string::npos)
+	if (str == "inf" || str == "nan" || str == "-inf" || str == "+inf" || str == "+nan" || str == "-nan")
 		return ;
 	if (str[length - 1] == 'f') {
 		str.erase(length - 1);
