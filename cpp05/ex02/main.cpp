@@ -5,9 +5,9 @@
 #include <iostream>
 
 int main(void) {
-    ShrubberyCreationForm sForm("mkang"); //sign : 145, exec : 137
+    ShrubberyCreationForm sForm("jwoo"); //sign : 145, exec : 137
     RobotomyRequestForm rForm("tkim"); // sign : 72, exec : 45
-    PresidentialPardonForm pForm("jwoo"); // sign : 25, exec : 5
+    PresidentialPardonForm pForm("mkang"); // sign : 25, exec : 5
     Bureaucrat me;
 
     try {

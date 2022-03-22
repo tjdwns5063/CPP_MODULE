@@ -66,14 +66,17 @@ Form*  Intern::makeForm(std::string formName, std::string target) {
         switch (idx) {
             case SHRUBBERY:
                 if (checkFormName(formName, forms[SHRUBBERY]->getName())) {
+                    std::cout << "Intern creates " << forms[SHRUBBERY]->getName() << '\n';
                     return (new ShrubberyCreationForm(target));
                 }
             case ROBOTOMY:
                 if (checkFormName(formName, forms[ROBOTOMY]->getName())) {
+                    std::cout << "Intern creates " << forms[ROBOTOMY]->getName() << '\n';
                     return (new RobotomyRequestForm(target));
                 }
             case PRESIDENTIAL:
                 if (checkFormName(formName, forms[PRESIDENTIAL]->getName())) {
+                    std::cout << "Intern creates " << forms[PRESIDENTIAL]->getName() << '\n';
                     return (new PresidentialPardonForm(target));
                 }
         }
