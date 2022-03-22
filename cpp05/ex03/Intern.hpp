@@ -7,8 +7,10 @@ class Form;
 
 class Intern {
 private:
-    std::string* forms[3];
-    enum formsEnum {
+    Form*   forms[3];
+    bool    checkFormName( std::string& formName, const std::string& compareName );
+    void    convertFormName( std::string& formName );
+    enum    formsEnum {
         SHRUBBERY, 
         ROBOTOMY, 
         PRESIDENTIAL, 
