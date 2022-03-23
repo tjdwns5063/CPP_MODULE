@@ -15,8 +15,9 @@ Base* generate(void) {
         return (new B());
     } else if (random % 3 == 2) {
         return (new C());
+    } else {
+        return (NULL);
     }
-    return (NULL);
 }
 
 void identify(Base* p) {
