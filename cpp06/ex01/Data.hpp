@@ -1,22 +1,13 @@
 #ifndef DATA_HPP
 # define DATA_HPP
 
-#include <iostream>
+#include <cstdint>
 
-class Data {
-private:
+typedef struct Data {
     int source;
-    Data( void );
+} Data;
 
-public:
-    Data( int _source );
-    ~Data( void );
-    Data( const Data& ref );
-    Data&   operator=( const Data& ref );
-    int     getSource( void ) const;
-};
-
-uintptr_t   serialize(Data* ptr);
-Data*       deserialize(uintptr_t raw);
+uintptr_t serialize(Data* ptr);
+Data* deserialize(uintptr_t raw);
 
 # endif

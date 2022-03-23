@@ -60,11 +60,10 @@ void identify(Base& p) {
 }
 
 int main(void) {
-    Base*   ptr;
-
-    ptr = generate();
+    Base*   ptr = generate();
     Base&   ref = *ptr;
 
     identify(ptr);
     identify(ref);
+    delete (ptr);
 }

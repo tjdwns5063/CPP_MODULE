@@ -5,14 +5,20 @@ template<typename T>
 class Array {
 private:
 	T*	arr;
-	const unsigned int _size;
+	const unsigned long _size;
 public:
-	Array( void ) {
-		arr = NULL;
+	Array( void ): _size(0) {
+		arr = 0;
 	}
 
-	Array( unsigned int n ): _size(n) {
-		arr = new T[n]();
+	Array( unsigned long n ): _size(n) {
+		try {
+			std::cout << _size << '\n';
+			arr = new(std::nothrow) T[n]();
+		} catch (std::exception& err) {
+			arr = 0;
+			std::cout << "Allocate Error!\n";
+		}
 	}
 
 	~Array( void ) {
@@ -25,17 +31,23 @@ public:
 			return (*this);
 		}
 		if (arr) {
-			//delete[] (arr);
+			delete[] (arr);
 		}
-		arr = new T[_size]();
+		try {
+			arr = new T[_size]();
+		} catch (std::bad_alloc& err) {
+			arr = 0;
+			std::cout << "Allocate Error!\n";
+		}
 		return (*this);
 	}
 
 	Array( const Array& ref ): _size(ref._size) {
+		arr = 0;
 		*this = ref;
 	}
 
-	T& operator[]( unsigned int idx ) const {
+	T& operator[]( unsigned long idx ) const {
 		if (idx >= _size) throw std::out_of_range("this idx is out of range");
 		return (arr[idx]);
 	}

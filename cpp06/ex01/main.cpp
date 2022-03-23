@@ -1,8 +1,10 @@
+#include <iostream>
 #include "Data.hpp"
 
 int main(void) {
     {
-        Data*   dataPtr = new Data(4);
+        Data*   dataPtr = new Data;
+        dataPtr->source = 4;
         uintptr_t serial;
         Data*   deserial;
 
@@ -18,7 +20,9 @@ int main(void) {
         std::cout << "memory : " << deserial << '\n';
 
         std::cout << "\n--------------value--------------------\n\n";        
-        std::cout << "value : " << dataPtr->getSource() << '\n';
-        std::cout << "value : " << deserial->getSource() << "\n\n";
+        std::cout << "value : " << dataPtr->source << '\n';
+        std::cout << "value : " << deserial->source << "\n\n";
+
+        delete (dataPtr);
     }
 }
