@@ -5,11 +5,11 @@
 
 class Convert {
 private:
-	std::string	str;
 	double		value;
 
 	Convert( void );
 	void	eraseF( std::string& _str );
+	void	strToValue( std::string& _str );
 
 public:
 	Convert( std::string _str );

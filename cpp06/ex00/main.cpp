@@ -4,12 +4,10 @@
 #include "Convert.hpp"
 
 int main(int ac, char** av) {
-	static_cast<void>(ac);
-	try {
-		Convert c(av[1]);
-		std::cout << c;
-
-	} catch (std::exception& err) {
-		std::cout << err.what() << '\n';
+	if (ac != 2) {
+		std::cout << "Please input one argument!\n";
+		return (EXIT_FAILURE);
 	}
+	Convert c(av[1]);
+	std::cout << c;
 }
