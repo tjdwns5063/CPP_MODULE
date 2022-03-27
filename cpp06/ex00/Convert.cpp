@@ -4,9 +4,13 @@
 #include <iomanip>
 
 Convert::Convert( std::string _str ) {
-	eraseF(_str);
-	str = _str;
-	value = toDouble();
+	try {
+		eraseF(_str);
+		strToValue(_str);
+	} catch (std::exception& err) {
+		std::cout << err.what() << '\n';
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 Convert::~Convert( void ) {
@@ -14,16 +18,26 @@ Convert::~Convert( void ) {
 }
 
 Convert::Convert( const Convert& ref ) {
-	str = ref.str;
+	*this = ref;
 }
 
 Convert&	Convert::operator=( const Convert& ref ) {
-	str = ref.str;
+	value = ref.value;
 	return (*this);
 }
 
 const char*	Convert::NotDecimalExpressionException::what( void ) const throw() {
 	return ("this argument is not decimal expression");
+}
+
+void	Convert::strToValue( std::string& _str ) {
+std::stringstream ss(_str);
+	double _value = 0;
+
+	ss >> _value;
+	if (ss.fail() == 1)
+		throw NotDecimalExpressionException();
+	value = _value;
 }
 
 void Convert::eraseF( std::string& str ) {
@@ -37,18 +51,14 @@ void Convert::eraseF( std::string& str ) {
 		throw NotDecimalExpressionException();
 }
 
-double Convert::toDouble( void ) const {
-	std::stringstream ss(str);
-	double value = 0;
 
-	ss >> value;
-	if (ss.fail() == 1)
-		throw NotDecimalExpressionException();
+
+double Convert::toDouble( void ) const {
 	return (value);
 }
 
 char	Convert::toChar( void ) const {
-	char	charValue = static_cast<char>(value);
+	char charValue = static_cast<char>(value);
 
 	return (charValue);	
 }
@@ -60,7 +70,7 @@ int	Convert::toInt( void ) const {
 }
 
 float	Convert::toFloat( void ) const {
-	float	floatValue = static_cast<float>(value);
+	float floatValue = static_cast<float>(value);
 
 	return (floatValue);
 }
@@ -85,7 +95,7 @@ void	Convert::print( float floatValue ) const {
 	if (std::isinf(value))
 		std::cout.setf(std::ios::showpos);
 	std::cout.setf(std::ios::fixed);
-	std::cout << std::setprecision(1) << floatValue << 'f' << '\n';
+	std::cout << std::setprecision(1)<< floatValue << 'f' << '\n';
 	std::cout.unsetf(std::ios::showpos);
 }
 

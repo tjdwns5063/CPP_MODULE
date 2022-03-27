@@ -6,17 +6,19 @@ class Array {
 private:
 	T*	arr;
 	const unsigned long _size;
+	bool _fail;
 public:
 	Array( void ): _size(0) {
 		arr = 0;
+		_fail = false;
 	}
 
 	Array( unsigned long n ): _size(n) {
 		try {
-			std::cout << _size << '\n';
-			arr = new(std::nothrow) T[n]();
+			arr = new T[n]();
 		} catch (std::exception& err) {
 			arr = 0;
+			_fail = true;
 			std::cout << "Allocate Error!\n";
 		}
 	}
@@ -37,6 +39,7 @@ public:
 			arr = new T[_size]();
 		} catch (std::bad_alloc& err) {
 			arr = 0;
+			_fail = true;
 			std::cout << "Allocate Error!\n";
 		}
 		return (*this);
@@ -54,6 +57,10 @@ public:
 
 	unsigned int size( void ) const {
 		return (_size);
+	}
+
+	bool	fail( void ) const {
+		return (_fail);
 	}
 };
 
