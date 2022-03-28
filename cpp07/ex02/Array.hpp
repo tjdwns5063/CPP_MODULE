@@ -5,20 +5,17 @@ template<typename T>
 class Array {
 private:
 	T*	arr;
-	const unsigned long _size;
-	bool _fail;
+	const unsigned int _size;
 public:
 	Array( void ): _size(0) {
 		arr = 0;
-		_fail = false;
 	}
 
-	Array( unsigned long n ): _size(n) {
+	Array( unsigned int n ): _size(n) {
 		try {
 			arr = new T[n]();
 		} catch (std::exception& err) {
 			arr = 0;
-			_fail = true;
 			std::cout << "Allocate Error!\n";
 		}
 	}
@@ -37,9 +34,11 @@ public:
 		}
 		try {
 			arr = new T[_size]();
+			for (unsigned int idx = 0; idx < _size; idx++) {
+				arr[idx] = ref[idx];
+			}
 		} catch (std::bad_alloc& err) {
 			arr = 0;
-			_fail = true;
 			std::cout << "Allocate Error!\n";
 		}
 		return (*this);
@@ -50,7 +49,12 @@ public:
 		*this = ref;
 	}
 
-	T& operator[]( unsigned long idx ) const {
+	const T& operator[]( unsigned int idx ) const {
+		if (idx >= _size) throw std::out_of_range("this idx is out of range");
+		return (arr[idx]);
+	}
+
+	T& operator[]( unsigned int idx ) {
 		if (idx >= _size) throw std::out_of_range("this idx is out of range");
 		return (arr[idx]);
 	}
@@ -58,17 +62,18 @@ public:
 	unsigned int size( void ) const {
 		return (_size);
 	}
-
-	bool	fail( void ) const {
-		return (_fail);
-	}
 };
 
 template<typename T>
 std::ostream& operator<<( std::ostream& os, const Array<T>& ref ) {
+	std::cout << "[";
 	for (unsigned int idx = 0; idx < ref.size(); idx++) {
-		std::cout << ref[idx] << '\n';
+		if (idx < ref.size() - 1)
+			std::cout << ref[idx] << ", ";
+		else
+			std::cout << ref[idx];
 	}
+	std::cout << "]";
 	return (os);
 }
 
