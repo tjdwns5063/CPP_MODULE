@@ -1,9 +1,15 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template<typename T>
-void	iter(T* arr, int len, void (*func)(const T& t)) {
-	for (int idx = 0; idx < len; idx++) {
+#include "iostream"
+
+template <typename T, int L>
+void	iter(T (&arr)[L], int len, void (*func)(const T& t)) {
+	for (int idx = 0; idx < len; ++idx) {
+		if (idx >= L) {
+			std::cout << "index is out of range\n";
+			return ;
+		}
 		func(arr[idx]);
 	}
 }
