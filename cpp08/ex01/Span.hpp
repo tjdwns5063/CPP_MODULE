@@ -1,13 +1,12 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-#include <iostream>
+#include <exception>
 #include <vector>
 
 class Span {
 private:
-	std::vector<int> data;
-	unsigned long size;
+	std::vector<long long> data;
 	Span( void );
 
 public:
@@ -25,8 +24,8 @@ public:
 			}
 		}
 	}
-	void addNumber( int num );
-	std::vector<int> getData( void ) const;
+	void addNumber( long long num );
+	std::vector<long long> getData( void ) const;
 	unsigned long longestSpan( void ) const;
 	unsigned long shortestSpan( void ) const;
 };

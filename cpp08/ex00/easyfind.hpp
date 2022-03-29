@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-template<typename T>
+template <typename T>
 typename T::iterator	easyfind(T& container, int num) {
 	typename T::iterator begin = container.begin();
 	typename T::iterator end = container.end();
@@ -13,7 +13,7 @@ typename T::iterator	easyfind(T& container, int num) {
 			return (begin);
 		}
 	}
-	return (end);
+	throw std::runtime_error("cannot find this item");
 }
 
 # endif

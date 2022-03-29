@@ -1,10 +1,10 @@
 #include <algorithm>
 #include <limits>
+#include <iostream>
 #include "Span.hpp"
 
 Span::Span( unsigned int _capacity ) {
 	data.reserve(_capacity);
-	size = 0;
 }
 
 Span::~Span( void ) {
@@ -18,25 +18,23 @@ Span::Span( const Span& ref ) {
 Span& Span::operator=( const Span& ref ) {
 	data.reserve(ref.data.capacity());
 	std::copy(ref.data.begin(), ref.data.end(), std::back_inserter(data));
-	size = ref.size;
 	return (*this);
 }
 
-std::vector<int> Span::getData( void ) const {
+std::vector<long long> Span::getData( void ) const {
 	return (data);
 }
 
-void Span::addNumber( int num ) {
+void Span::addNumber( long long num ) {
 	if (data.capacity() > data.size()) {
 		data.push_back(num);
-		size++;
 	} else
 		throw std::runtime_error("storage is already full");
 }
 
 unsigned long Span::longestSpan( void ) const {
-	int largestNum = data[0];
-	int smallestNum = data[0];
+	long long largestNum = data[0];
+	long long smallestNum = data[0];
 	unsigned long span = 0;
 
 	if (data.size() < 2)
@@ -51,9 +49,9 @@ unsigned long Span::longestSpan( void ) const {
 }
 
 unsigned long Span::shortestSpan( void ) const {
-	std::vector<int> temp = data;
-	unsigned long span = std::numeric_limits<unsigned long>::max();
-	unsigned long compare = 0;
+	std::vector<long long> temp = data;
+	unsigned long long span = std::numeric_limits<unsigned long long>::max();
+	unsigned long long compare = 0;
 
 	std::sort(temp.begin(), temp.end());
 	for (unsigned long leftIdx = 0; leftIdx < temp.size() - 1; leftIdx++) {
@@ -66,10 +64,15 @@ unsigned long Span::shortestSpan( void ) const {
 }
 
 std::ostream& operator<<( std::ostream& os, const Span& span ) {
-	std::vector<int> temp = span.getData();
+	std::vector<long long> temp = span.getData();
 
-	for (std::vector<int>::iterator it = temp.begin(); it != temp.end(); it++) {
-		std::cout << *it << ' ';
+	std::cout << "[";
+	for (std::vector<long long>::iterator it = temp.begin(); it != temp.end(); it++) {
+		if (it + 1 !=  temp.end())
+			std::cout << *it << ", ";
+		else
+			std::cout << *it;
 	}
+	std::cout << "]";
 	return (os);
 }
