@@ -2,7 +2,7 @@
 #include <iostream>
 
 template<typename T>
-void print(const T t) {
+void print(const T& t) {
 	std::cout << t << '\n';
 }
 
@@ -14,4 +14,5 @@ int main(void) {
 	iter(arr, sizeof(arr) / sizeof(int), print);
 	iter(arr2, sizeof(arr2) / sizeof(char), print);
 	iter(arr3, sizeof(arr3) / sizeof(std::string), print);
+	iter(arr3, 4, print);
 }
