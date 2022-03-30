@@ -16,8 +16,7 @@ Span::Span( const Span& ref ) {
 }
 
 Span& Span::operator=( const Span& ref ) {
-	data.reserve(ref.data.capacity());
-	std::copy(ref.data.begin(), ref.data.end(), std::back_inserter(data));
+	addNumber(ref.data.begin(), ref.data.end());
 	return (*this);
 }
 
@@ -61,6 +60,10 @@ unsigned long Span::shortestSpan( void ) const {
 		span = std::min(span, compare);
 	}
 	return (span);
+}
+
+unsigned long Span::getCapacity( void ) const {
+	return (data.capacity());
 }
 
 std::ostream& operator<<( std::ostream& os, const Span& span ) {

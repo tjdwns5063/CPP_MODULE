@@ -1,13 +1,7 @@
 #include <iostream>
 #include "MutantStack.hpp"
-#include "temp.hpp"
 
 int main(void) {
-	{
-		Child<int> c;
-
-		c.begin();
-	}
 	{
 		std::cout << "------------test1-----------\n\n";
 		MutantStack<int> mstack;
@@ -48,17 +42,10 @@ int main(void) {
 		for (MutantStack<int>::iterator it = ms.begin(); it != ms.end(); it++) {
 			std::cout << *it << '\n';
 		}
-		std::cout << "\n------using const_iterator------\n\n";
-		std::cout << *ms.cbegin() << '\n';
-		std::cout << *(ms.cend() - 1) << '\n';
 
 		std::cout << "\n------using reverse_iterator------\n\n";
 		for (MutantStack<int>::reverse_iterator rit = ms.rbegin(); rit != ms.rend(); rit++) {
 			std::cout << *rit << '\n';
 		}
-
-		std::cout << "------using const_reverse_iterator------\n\n";
-		std::cout << *ms.crbegin() << '\n';
-		std::cout << *(ms.crend() - 1) << '\n';
 	}
 }

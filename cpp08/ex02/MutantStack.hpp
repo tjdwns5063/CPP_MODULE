@@ -3,7 +3,6 @@
 
 #include <stack>
 
-
 template<typename T>
 class MutantStack: public std::stack<T> {
 public:
@@ -20,32 +19,32 @@ public:
 		return (this->c.begin());
 	}
 
+	const_iterator begin( void ) const {
+		return (static_cast<const_iterator>(this->c.begin()));
+	}
+
 	iterator end( void ) {
 		return (this->c.end());
 	}
 
-	const_iterator cbegin( void ) {
-		return (this->c.cbegin());
-	}
-
-	const_iterator cend( void ) {
-		return (this->c.cend());
+	const_iterator end( void ) const {
+		return (static_cast<const_iterator>(this->c.end()));
 	}
 
 	reverse_iterator rbegin( void ) {
 		return (this->c.rbegin());
 	}
 
+	const_reverse_iterator rbegin( void ) const {
+		return (static_cast<const_reverse_iterator>(this->c.rbegin()));
+	}
+
 	reverse_iterator rend( void ) {
 		return (this->c.rend());
 	}
 
-	const_reverse_iterator crbegin( void ) {
-		return (this->c.crbegin());
-	}
-
-	const_reverse_iterator crend( void ) {
-		return (this->c.crend());
+	const_reverse_iterator rend( void ) const {
+		return (static_cast<const_reverse_iterator>(this->c.rend()));
 	}
 
 	MutantStack( void ) {};

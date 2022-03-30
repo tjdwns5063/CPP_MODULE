@@ -1,19 +1,17 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-#include <iostream>
+#include <algorithm>
+#include <exception>
 
 template <typename T>
-typename T::iterator	easyfind(T& container, int num) {
-	typename T::iterator begin = container.begin();
-	typename T::iterator end = container.end();
+long long	easyfind(T container, long long num) {
+	typename T::iterator ret;
 
-	for (; begin != end; begin++) {
-		if (*begin == num) {
-			return (begin);
-		}
-	}
-	throw std::runtime_error("cannot find this item");
+	ret = std::find(container.begin(), container.end(), num);
+	if (ret == container.end())
+		throw std::runtime_error("cannot find this item");
+	return (*ret);
 }
 
 # endif

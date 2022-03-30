@@ -26,6 +26,7 @@ public:
 	}
 	void addNumber( long long num );
 	std::vector<long long> getData( void ) const;
+	unsigned long getCapacity( void ) const;
 	unsigned long longestSpan( void ) const;
 	unsigned long shortestSpan( void ) const;
 };
