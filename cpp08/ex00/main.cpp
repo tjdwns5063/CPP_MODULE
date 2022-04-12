@@ -15,9 +15,9 @@ int main(void) {
 		dq1.push_back(i + 1);
 	}
 	try {
-		std::cout << easyfind(v1, 3) << '\n';
-		std::cout << easyfind(l1, 2) << '\n';
-		std::cout << easyfind(dq1, 7) << '\n';
+		std::cout << *easyfind(v1, 3) << '\n';
+		std::cout << *easyfind(l1, 2) << '\n';
+		std::cout << *easyfind(dq1, 7) << '\n';
 	} catch (std::exception& err) {
 		std::cout << err.what() << '\n';
 	}
