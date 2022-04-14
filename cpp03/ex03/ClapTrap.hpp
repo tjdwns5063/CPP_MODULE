@@ -12,7 +12,6 @@ protected:
     const int           maxEnergyPoint;
     int                 energyPoint;
     const int           attackDamage;
-    ClapTrap( void );
 
 public:
     ClapTrap( std::string name );

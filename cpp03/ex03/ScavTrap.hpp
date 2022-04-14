@@ -7,7 +7,6 @@ class ScavTrap : virtual public ClapTrap {
 private:
     std::string         name;
     bool                guardMode;
-    ScavTrap( void );
 
 public:
     ScavTrap( std::string name );
